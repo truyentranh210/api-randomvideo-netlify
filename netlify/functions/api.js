@@ -45,11 +45,12 @@ export async function handler(event) {
     ]
   };
 
-  const path = event.path.replace("/api/", "");
-  const category = path.split("/")[1] || "";
+  // 🧠 Xác định đường dẫn đúng
+  const segments = event.path.split("/").filter(Boolean);
+  const category = segments[segments.length - 1]; // Lấy phần cuối cùng (vd: hentai3d)
 
-  // Nếu chỉ truy cập /api → trả danh sách category
-  if (!category || category === "api") {
+  // Nếu chỉ truy cập /api → liệt kê category
+  if (category === "api") {
     const result = {};
     for (const [key, value] of Object.entries(data)) {
       result[key] = value.length;
@@ -57,11 +58,11 @@ export async function handler(event) {
     return {
       statusCode: 200,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(result),
+      body: JSON.stringify(result, null, 2),
     };
   }
 
-  // Nếu truy cập /api/<category>
+  // Nếu category không tồn tại
   if (!data[category]) {
     return {
       statusCode: 404,
@@ -70,6 +71,7 @@ export async function handler(event) {
     };
   }
 
+  // ✅ Trả random video
   const items = data[category];
   const randomItem = items[Math.floor(Math.random() * items.length)];
   return {
