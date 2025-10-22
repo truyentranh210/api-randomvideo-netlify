@@ -36,7 +36,8 @@ export async function handler(event) {
       "https://files.catbox.moe/0xo8k3.mp4",
       "https://files.catbox.moe/ayc6wh.mp4",
       "https://files.catbox.moe/6jutt8.mp4",
-      "https://files.catbox.moe/sxwu2y.mp4"
+      "https://files.catbox.moe/sxwu2y.mp4",
+      "https://files.catbox.moe/x47mtv.mp4"
     ],
     hentai2d: [
       "https://files.catbox.moe/z7e55g.mp4",
