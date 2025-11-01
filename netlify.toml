@@ -2,7 +2,14 @@
   functions = "netlify/functions"
   publish = "."
 
+# 🔹 Tự động redirect mọi request /api/... đến function api.js
 [[redirects]]
   from = "/api/*"
+  to = "/.netlify/functions/api"
+  status = 200
+
+# 🏠 Thêm route /home riêng
+[[redirects]]
+  from = "/home"
   to = "/.netlify/functions/api"
   status = 200
